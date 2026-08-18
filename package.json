@@ -1,0 +1,13 @@
+{
+  "name": "vet-inventory-sync",
+  "version": "2.0.0",
+  "description": "兽药出入库记录可追溯系统 · 多端同步版（手机/电脑共用同一账本）",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "license": "MIT"
+}

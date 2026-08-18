@@ -1,0 +1,22 @@
+# Render 部署配置 —— 兽药出入库记录可追溯系统 · 多端同步版
+# 用法：把本目录推到 GitHub 后，在 Render 用「Blueprint」方式连接此仓库即可。
+services:
+  - type: web
+    name: vet-inventory-sync
+    runtime: node
+    plan: free                      # 免费实例（空闲会自动休眠，首次访问约 30~50s 唤醒）
+    region: oregon                  # 可改成 singapore / frankfurt 等离你近的节点
+    branch: main
+    buildCommand: npm install       # 零依赖，安装很快
+    startCommand: node server.js
+    healthCheckPath: /api/state
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR               # 账本写入持久盘，避免重启丢数据
+        value: /data
+      # 可选：设访问口令，防止外人乱改账本。部署后在 Render 环境变量里再加 API_TOKEN=你的口令
+    disks:
+      - name: kcdata
+        mountPath: /data
+        sizeGB: 1                   # 1GB 足够，按量计费极低（< $0.25/月）

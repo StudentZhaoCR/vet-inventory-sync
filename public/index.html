@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>兽药出入库记录可追溯系统</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- 侧边导航 -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-logo">兽药</div>
+        <div class="brand-text">
+          <div class="brand-title">出入库追溯系统</div>
+          <div class="brand-sub">保管台账 · 账实核对</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a class="nav-item" data-view="dashboard"><span class="nav-ic">▦</span>总览</a>
+        <a class="nav-item" data-view="inbound"><span class="nav-ic">↘</span>入库管理</a>
+        <a class="nav-item" data-view="outbound"><span class="nav-ic">↗</span>出库管理</a>
+        <a class="nav-item" data-view="vaccine"><span class="nav-ic">❄</span>疫苗专项</a>
+        <a class="nav-item" data-view="inventory"><span class="nav-ic">▤</span>库存查询</a>
+        <a class="nav-item" data-view="slips"><span class="nav-ic">▥</span>领用单</a>
+        <a class="nav-item" data-view="reconcile"><span class="nav-ic">⇄</span>账实核对</a>
+        <a class="nav-item" data-view="settings"><span class="nav-ic">⚙</span>设置</a>
+        <a class="nav-item" data-view="data"><span class="nav-ic">⇩</span>数据备份</a>
+      </nav>
+      <div class="sidebar-foot">
+        <button id="btn-sample" class="btn-ghost btn-sm">载入示例数据</button>
+        <div class="ver">v2.0 · 多端同步</div>
+      </div>
+    </aside>
+
+    <!-- 主区域 -->
+    <main class="main">
+      <header class="topbar">
+        <button class="hamburger" id="hamburger" aria-label="菜单">☰</button>
+        <div class="topbar-title" id="view-title">总览</div>
+        <div class="topbar-actions">
+          <span class="db-stat" id="topbar-stat"></span>
+          <span class="sync-status" id="sync-status" title="多端同步状态">同步中…</span>
+          <button class="btn-sync" id="btn-sync" title="立即与服务器同步">↻ 同步</button>
+        </div>
+      </header>
+      <section class="content" id="view-root"><!-- 视图渲染区 --></section>
+    </main>
+  </div>
+
+  <div class="drawer-overlay" id="drawer-overlay" hidden></div>
+
+  <!-- 通用弹层 -->
+  <div class="modal-mask" id="modal-mask" hidden>
+    <div class="modal" id="modal">
+      <div class="modal-head"><span id="modal-title">信息</span><button class="modal-close" id="modal-close">×</button></div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-foot" id="modal-foot"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
